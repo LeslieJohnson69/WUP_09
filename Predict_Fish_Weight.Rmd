@@ -27,7 +27,6 @@ Fishdata=read_csv(file = "Fish.csv")
 ## Build the best regression model you can that predicts the weight of perch
 ## Using only two predictor variables  
 
-
 # Perch
 ## Methods
 
@@ -52,6 +51,7 @@ Perchdata = subset(Perchdata, select = -Species)
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
 
 ## Inferential Results
 
@@ -87,30 +87,26 @@ fullup <- lm(Weight ~., data=Perchdata)
 summary(best.model)
 ```
 
-  
-##Which is best??  
-
-```{r}
-which.max(summary.out$adjr2)
-```
-```{r}
-summary.out$which[3,]
-```
-
 ```{r}
 anova(fullup,best.model)
 ```
 
-
+The p-value is 0.879 which means that there is no difference between using the Model that has all of the data vs. the Model that uses only two variables.
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
-
 
 
 # Bream
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
+
+```{r}
+Breamdata = filter(Fishdata, Species == "Breamdata")
+Breamdata = subset(Breamdata, select = -Species)
+```
+
+
 
 #Results
 
@@ -127,6 +123,25 @@ anova(fullup,best.model)
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ## Inferential Results
+
+
+  
+##Which is best??  
+
+```{r}
+which.max(summary.out$adjr2)
+```
+```{r}
+summary.out$which[3,]
+```
+
+
+
+```{r}
+anova(fullup,best.model)
+```
+
+
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
