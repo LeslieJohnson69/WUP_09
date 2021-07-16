@@ -15,7 +15,7 @@ require(tidyverse)
 ```
 
 ```{r}
-read_csv(file = "Fish.csv")
+Fishdata=read_csv(file = "Fish.csv")
 ```
 
 
@@ -32,6 +32,12 @@ read_csv(file = "Fish.csv")
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
+
+```{r}
+Perchdata = filter(Fishdata, Species == "Perch")
+Perchdata = subset(Perchdata, select = -Species)
+```
+
 
 ## Results
 
@@ -53,8 +59,8 @@ read_csv(file = "Fish.csv")
 ```{r}
 library(leaps)
 regsubsets.out <-
-    regsubsets(Length ~ .,
-               data = Bears,
+    regsubsets(Weight ~ .,
+               data = Perchdata,
                nbest = 1,       # 1 best model for each number of predictors
                nvmax = NULL,    # NULL for no limit on number of variables
                force.in = NULL, force.out = NULL,
@@ -76,8 +82,19 @@ summary.out$which[3,]
 ```
 
 ```{r}
-best.model <- lm(Length~Sex+Head.L+Chest.G,data=Bears)
+best.model <- lm(Weight~Height+Width,data=Perchdata)
+fullup <- lm(Weight ~., data=Perchdata)
 summary(best.model)
+```
+
+  
+##Which is best??  
+
+```{r}
+which.max(summary.out$adjr2)
+```
+```{r}
+summary.out$which[3,]
 ```
 
 ```{r}
