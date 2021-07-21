@@ -59,7 +59,9 @@ library(car)
 subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
 ```
   
-##Which is best??  
+## Which is best??  
+
+The best model uses the two variables H, and W.    
 
 ```{r}
 which.max(summary.out$adjr2)
@@ -74,13 +76,13 @@ fullup <- lm(Weight ~., data=Perchdata)
 summary(best.model)
 ```
 
-The p-value is so small it showing us th model is an excellent fit.
+The p-value is so small it showing us this model is an excellent fit.  
 
 ```{r}
 anova(fullup,best.model)
 ```
 
-The p-value is 0.879 which means that there is no difference between using the Model that has all of the data vs. the Model that uses only two variables.
+The p-value is 0.879 which means that there is no difference between using the Model that has all of the data vs. the Model that uses only two variables.  
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
@@ -119,7 +121,7 @@ subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2
   
 ## Which is best?? 
 
-The model that is the best is the one that uses four variables: L1, L2, H, and W.
+The model that is the best is the one that uses three variables: L1, H and W.  
 
 ```{r}
 which.max(summary.out$adjr2)
@@ -129,7 +131,7 @@ summary.out$which[3,]
 ```
 
 ```{r}
-best.model <- lm(Weight~Height+Width,data=Breamdata)
+best.model <- lm(Weight~ Length2+Height,data=Breamdata)
 fullup <- lm(Weight ~., data=Breamdata)
 summary(best.model)
 ```
@@ -138,7 +140,7 @@ summary(best.model)
 anova(fullup,best.model)
 ```
 
-
+The p-value is too large to say there's a difference between utilizing the best model which uses three variables and the best model using two.  
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
@@ -173,6 +175,8 @@ subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2
 ```
 ## which is the best
 
+The model that the best uses four variables L1, L2, H, and W.
+
 ```{r}
 which.max(summary.out$adjr2)
 ```
@@ -191,10 +195,13 @@ summary(best.model)
 anova(fullup,best.model)
 ```
 
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+The p-value is too large to say there's a difference between using the best model that uses four variables and the best model that uses two variables.    
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfies the assumptions and is appropriate to answer the research question!-->
 
 
 # Discussion and Conclusion
 
-<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variables causes the other, or whether they perhaps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
+Based on the automated selection of variables there is no real difference in using a model with two variables versus using one with all the variables. This was identified through a graphical depiction of the adjusted R-square and the p-value. In conclusion when comparing the p-value of the two variable models the p-values were so small we reject the null hypothesis that these models are beneficial in predicting the weight of fish.The p-values associated with the anova were large therefore the result in a failure to reject the null hypothesis. There is no between in using the models with two variables versus the fullup models.
